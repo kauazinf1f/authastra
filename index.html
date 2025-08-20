@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Clique abaixo para se verificar:</h1>
+    <a id="login" class="btn">Verificar com Discord</a>
+  </div>
+
+  <script>
+    const CLIENT_ID = "1406718673879830661"; // pegue no Developer Portal
+    const REDIRECT_URI = "https://authastra.vercel.app/verificado.html"; // URL da Vercel
+
+    document.getElementById("login").href =
+      `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+  </script>
+</body>
+</html>

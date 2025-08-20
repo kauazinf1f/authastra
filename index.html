@@ -16,7 +16,7 @@
     const REDIRECT_URI = "https://authastra.vercel.app/verificado.html"; // URL da Vercel
 
     document.getElementById("login").href =
-      `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+      `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify%20email%20guilds.join`;
   </script>
 </body>
 </html>

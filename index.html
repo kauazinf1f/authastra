@@ -35,12 +35,31 @@
       color: white;
     }
     button {
-      background: red;
+      background: linear-gradient(135deg, red, black);
       color: white;
       font-weight: bold;
       cursor: pointer;
+      border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgb(188,20,20);
+    transition: 0.3s;
     }
     .painel { display: none; text-align: center; }
+    .injectButton {
+    margin-top: 12px;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, red, black);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgb(188,20,20);
+    transition: 0.3s;
+}
   </style>
 </head>
 <body>
@@ -51,7 +70,9 @@
   <input type="email" id="email" placeholder="Email">
   <input type="email" id="password" placeholder="Senha">
   <button id="btnLogin">Entrar</button>
+  <button id="btnEntrar" class="injectButton">Discord</button>
 </div>
+
 
 <!-- PAINEL -->
 <div class="box painel" id="painelBox">
@@ -86,6 +107,9 @@
   const loginBox  = document.getElementById("loginBox");
   const painelBox = document.getElementById("painelBox");
   const userEmail = document.getElementById("userEmail");
+  document.getElementById("btnEntrar").addEventListener("click", () => {
+    window.location.href = "https://discord.gg/QXYcDVAbTb";
+  });
 
   document.getElementById("btnLogin").addEventListener("click", () => {
     const email = document.getElementById("email").value;

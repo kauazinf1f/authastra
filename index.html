@@ -1,339 +1,124 @@
-<!DOCTYPE html><html lang="pt"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MEU</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="particles.min.js"></script>
-    <style>
-        /* ===== RESET ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel Espanca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-/* ===== BODY ===== */
-body {
-    background: linear-gradient(135deg, #000000, #0b0014);
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-}
-
-/* ===== MENU CONTAINER ===== */
-.menu-container {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 450px;
-    padding: 10px;
-}
-
-/* ===== MENU ===== */
-.menu {
-    background: rgba(20, 20, 20, 0.85);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 0 25px rgba(160, 32, 240, 0.35);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(160, 32, 240, 0.3);
-}
-
-/* ===== TITLE ===== */
-.menu-title {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #c77dff;
-    margin-bottom: 10px;
-}
-
-.menu-title hr {
-    margin-top: 6px;
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #a020f0, transparent);
-}
-
-/* ===== TABS ===== */
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.tab {
-    flex: 1;
-    padding: 10px;
-    background: #111;
-    color: #ccc;
-    border: 1px solid #333;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-}
-
-.tab:hover {
-    color: #fff;
-    border-color: #a020f0;
-}
-
-.tab.active {
-    background: linear-gradient(135deg, #a020f0, #6a0dad);
-    color: #fff;
-    box-shadow: 0 0 10px rgba(160, 32, 240, 0.6);
-}
-
-/* ===== CONTENT ===== */
-.content {
-    margin-top: 10px;
-}
-
-/* ===== CHECKBOX ===== */
-.checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.checkbox input {
-    display: none;
-}
-
-.checkmark {
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
-    background: #111;
-    border: 1px solid #555;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #a020f0;
-    font-size: 12px;
-    opacity: 0;
-    transition: 0.2s;
-}
-
-.checkbox input:checked + .checkmark {
-    opacity: 1;
-    background: #a020f0;
-    color: #fff;
-    box-shadow: 0 0 8px rgba(160, 32, 240, 0.8);
-}
-
-/* ===== SEPARATOR ===== */
-.separator {
-    height: 1px;
-    background: linear-gradient(to right, transparent, #444, transparent);
-    margin: 12px 0;
-}
-
-/* ===== SLIDER ===== */
-.slider-container {
-    margin-bottom: 12px;
-}
-
-.slider {
-    width: 100%;
-    appearance: none;
-    height: 6px;
-    background: #222;
-    border-radius: 5px;
-    outline: none;
-}
-
-.slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #a020f0;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(160, 32, 240, 0.8);
-    cursor: pointer;
-}
-
-/* ===== COMBOBOX ===== */
-.combobox {
-    width: 100%;
-    padding: 10px;
-    background: #111;
-    color: #fff;
-    border-radius: 8px;
-    border: 1px solid #333;
-    outline: none;
-    margin-bottom: 12px;
-}
-
-.combobox:focus {
-    border-color: #a020f0;
-    box-shadow: 0 0 8px rgba(160, 32, 240, 0.5);
-}
-
-/* ===== RADIO ===== */
-.radio-group {
-    margin-top: 6px;
-}
-
-.radio {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-    cursor: pointer;
-}
-
-.radio input {
-    display: none;
-}
-
-.radio-mark {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid #555;
-}
-
-.radio input:checked + .radio-mark {
-    border-color: #a020f0;
-    background: radial-gradient(circle, #a020f0 50%, transparent 55%);
-    box-shadow: 0 0 8px rgba(160, 32, 240, 0.7);
-}
-
-/* ===== INFO TAB ===== */
-#infoTab p {
-    font-size: 14px;
-    margin-bottom: 6px;
-}
-
-/* ===== INJECT BUTTON ===== */
-#injectButton {
-    margin-top: 12px;
-    width: 100%;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(135deg, #a020f0, #6a0dad);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(160, 32, 240, 0.6);
-    transition: 0.3s;
-}
-
-#injectButton:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 25px rgba(160, 32, 240, 0.9);
-}
-    </style>
+  <style>
+    body {
+      background: #0b0b0b;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #151515;
+      padding: 25px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 25px #000;
+    }
+    h2 { text-align: center; }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+    input {
+      background: #222;
+      color: white;
+    }
+    button {
+      background: red;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .painel { display: none; text-align: center; }
+  </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="menu-container">
-        <div class="menu">
-            <div class="menu-title">XIT BY @THE SIMPLE'<hr></div>
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('aimbot')">Aimbot</button>
-                <button class="tab" onclick="showTab('info')">Info</button>
-            </div>
-            <div class="content" id="content">
-                <div id="aimbotTab">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <span class="checkmark">✔</span>
-                        Ativar Auxílio
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <span class="checkmark">✔</span>
-                        Ativar Fov
-                    </label>
-                    <div class="separator"></div>
-                    <div class="slider-container">
-                        <input type="range" min="0" max="10" value="0" step="1" class="slider" id="fovSlider">
-                        <span>Fov <span id="fovValue">0</span></span>
-                    </div>
-                    <select class="combobox">
-                        <option>Auxilio Head</option>
-                        <option>Auxilio Recoil</option>
-                        <option>Auxilio Sensi</option>
-                    </select>
-                    <div class="separator"></div>
-                    <span>Tipo de Aimbot:</span>
-                    <div class="radio-group">
-                        <label class="radio">
-                            <input type="radio" name="aimbotType" checked="">
-                            <span class="radio-mark"></span>
-                            Ao Atirar
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="aimbotType">
-                            <span class="radio-mark"></span>
-                            Ao Olhar
-                        </label>
-                    </div>
-                </div>
-                <div id="infoTab" style="display: none; text-align: left;">
-                    <p><strong>Modelo:</strong> <span id="deviceModel"></span></p>
-                    <p><strong>Key:</strong> THE SIMPLE'</p>
-                    <hr>
-                    <p><strong>Dicas:</strong> Ative Funções no Treinamento.</p>
-                </div>
-            </div>
-        </div>
-        <div class="inject-container">
-            <button id="injectButton" onclick="injectFunctions()">INJETAR FUNÇÕES NO JOGO</button>
-        </div>
-    </div>
-    <script>
-        function showTab(tab) {
-            document.getElementById('aimbotTab').style.display = tab === 'aimbot' ? 'block' : 'none';
-            document.getElementById('infoTab').style.display = tab === 'info' ? 'block' : 'none';
-            
-            let tabs = document.querySelectorAll('.tab');
-            tabs.forEach(button => button.classList.remove('active'));
-            document.querySelector(`.tab:nth-child(${tab === 'aimbot' ? 1 : 2})`).classList.add('active');
-        }
-        
-        function detectDevice() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(userAgent)) {
-                document.getElementById('deviceModel').innerText = 'Android';
-            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                document.getElementById('deviceModel').innerText = 'iPhone';
-            } else {
-                document.getElementById('deviceModel').innerText = 'Desconhecido';
-            }
-        }
-        
-        function injectFunctions() {
-            window.location.href = "freefireth://";
-        }
-        
-        document.getElementById('fovSlider').addEventListener('input', function() {
-            document.getElementById('fovValue').innerText = this.value;
-        });
-        
-        detectDevice();
-        
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 100 },
-                "color": { "value": "#800080" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 3 },
-                "move": { "enable": true, "speed": 5 }
-            }
-        });
-    </script>
 
+<!-- LOGIN -->
+<div class="box" id="loginBox">
+  <h2>LOGIN</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="email" id="password" placeholder="Senha">
+  <button id="btnLogin">Entrar</button>
+</div>
 
-</body></html>
+<!-- PAINEL -->
+<div class="box painel" id="painelBox">
+  <h2>🔥 Painel Espanca</h2>
+  <p id="userEmail"></p>
+  <button id="btnLogout">Sair</button>
+</div>
+
+<script type="module">
+  // Firebase v9 (MODULAR)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut 
+  } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCLAmIdulgRa1lit2D5aPu8QdxM2I43zA",
+    authDomain: "painel-espanca.firebaseapp.com",
+    databaseURL: "https://painel-espanca-default-rtdb.firebaseio.com",
+    projectId: "painel-espanca",
+    storageBucket: "painel-espanca.firebasestorage.app",
+    messagingSenderId: "257026807953",
+    appId: "1:257026807953:web:6bc670881c3806e84bc730"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const loginBox  = document.getElementById("loginBox");
+  const painelBox = document.getElementById("painelBox");
+  const userEmail = document.getElementById("userEmail");
+
+  document.getElementById("btnLogin").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const pass  = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, pass)
+      .then((cred) => {
+        window.location.href = "painel.html";
+      })
+      .catch(() => {
+        alert("Email ou senha inválidos");
+      });
+  });
+
+  document.getElementById("btnLogout").addEventListener("click", () => {
+    signOut(auth);
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      mostrarPainel(user);
+    } else {
+      loginBox.style.display = "block";
+      painelBox.style.display = "none";
+    }
+  });
+
+  function mostrarPainel(user) {
+    loginBox.style.display = "none";
+    painelBox.style.display = "block";
+    userEmail.innerText = "Logado como: " + user.email;
+  }
+</script>
+
+</body>
+</html>

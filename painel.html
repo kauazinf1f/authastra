@@ -279,20 +279,25 @@ body {
                             Ao Olhar
                         </label>
                     </div>
-                </div>
-                <div id="infoTab" style="display: none; text-align: left;">
-                    <p><strong>Modelo:</strong> <span id="deviceModel"></span></p>
-                    <p><strong>Key:</strong> <span id="userKey">*****</span></p>
-                    <hr>
-                    <p><strong>Dicas:</strong> Ative Funções no Treinamento.</p>
-                </div>
+                </div><div id="infoTab" style="display: none; text-align: left;">
+    <p><strong>Modelo:</strong> <span id="deviceModel"></span></p>
+    <p><strong>Key:</strong> <span id="userKey">*****</span></p>
+    <p><strong>Último Login:</strong> <span id="lastLogin">Carregando...</span></p>
+    <p><strong>Conta Criada:</strong> <span id="creationTime">Carregando...</span></p>
+    <hr>
+    <p><strong>Dicas:</strong> Ative Funções no Treinamento.</p>
+</div>
+
             </div>
         </div>
         <div class="inject-container">
-            <button id="injectButton" onclick="injectFunctions()">INJETAR FUNÇÕES NO JOGO</button>
+            <button id="injectButton" onclick="injectFunctions()">INJETAR FF NORMAL</button>
+            <button id="injectButton" onclick="injectFunctios()">INJETAR FF MAX</button>
         </div>
+        
+        
     </div>
-    <script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
@@ -305,7 +310,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔒 SEGURANÇA + MOSTRAR EMAIL COMO KEY
+// 🔒 SEGURANÇA + MOSTRAR EMAIL COMO KEY + ÚLTIMO LOGIN + CONTA CRIADA
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.replace("index.html");
@@ -314,6 +319,22 @@ onAuthStateChanged(auth, (user) => {
     const keySpan = document.getElementById("userKey");
     if (keySpan) {
       keySpan.innerText = user.email;
+    }
+
+    // 👉 MOSTRA O ÚLTIMO LOGIN
+    const lastLoginSpan = document.getElementById("lastLogin");
+    if (lastLoginSpan) {
+      const lastLogin = new Date(user.metadata.lastSignInTime);
+      lastLoginSpan.innerText = lastLogin.toLocaleDateString("pt-BR") + " " +
+                               lastLogin.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // 👉 MOSTRA A DATA DE CRIAÇÃO DA CONTA
+    const creationSpan = document.getElementById("creationTime");
+    if (creationSpan) {
+      const creationDate = new Date(user.metadata.creationTime);
+      creationSpan.innerText = creationDate.toLocaleDateString("pt-BR") + " " +
+                               creationDate.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
     }
   }
 });
@@ -342,6 +363,10 @@ onAuthStateChanged(auth, (user) => {
         
         function injectFunctions() {
             window.location.href = "freefireth://";
+        }
+        
+        function injectFunctios() {
+            window.location.href = "freefiremax://";
         }
         
         document.getElementById('fovSlider').addEventListener('input', function() {
